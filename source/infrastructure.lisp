@@ -52,13 +52,6 @@
 ;;;;;;
 ;;; some classes
 
-#+nil
-(hu.dwim.defclass-star:defclass* testable ()
-  ((name :type symbol)
-   (parent nil :initarg nil :type (or null testable))
-   (children (make-hash-table) :documentation "A mapping from testable names to testables")
-   (auto-call t :type boolean :accessor auto-call? :documentation "Controls whether to automatically call this test when its parent suite is invoked. Enabled by default.")))
-
 (defclass testable ()
   ((name :accessor name-of :initarg :name :type symbol)
    (parent :initform nil :accessor parent-of :type (or null testable))
@@ -105,22 +98,10 @@
                 :for child :being :the :hash-values :of (children-of self)
                 :summing (count-tests child)))))
 
-#+nil
-(hu.dwim.defclass-star:defclass* failure-description ()
-  ((test-context-backtrace)
-   (progress-char #\X :allocation :class)
-   (expected *failures-and-errors-are-expected* :type boolean)))
-
 (defclass failure-description ()
   ((test-context-backtrace :accessor test-context-backtrace-of :initarg :test-context-backtrace)
    (progress-char :initform #\X :accessor progress-char-of :initarg :progress-char :allocation :class)
    (expected :initform *failures-and-errors-are-expected* :accessor expected-p :initarg :expected :type boolean)))
-
-#+nil
-(hu.dwim.defclass-star:defclass* failed-assertion (failure-description)
-  ((form)
-   (format-control)
-   (format-arguments)))
 
 (defclass failed-assertion (failure-description)
   ((form :accessor form-of :initarg :form)
@@ -136,11 +117,6 @@
           (form-of self)
           (mapcar (compose #'name-of #'test-of)
                   (test-context-backtrace-of self))))
-
-#+nil
-(hu.dwim.defclass-star:defclass* failure-description/condition (failure-description)
-  ((form)
-   (condition)))
 
 (defclass failure-description/condition (failure-description)
   ((form :accessor form-of :initarg :form)
@@ -159,11 +135,6 @@
 (defmethod describe-object ((self extra-condition) stream)
   (let ((*print-circle* nil))
     (format stream "~S signaled an unwanted condition ~S" (form-of self) (condition-of self))))
-
-#+nil
-(hu.dwim.defclass-star:defclass* unexpected-error (failure-description)
-  ((condition)
-   (progress-char #\E :allocation :class)))
 
 (defclass unexpected-error (failure-description)
   ((condition :accessor condition-of :initarg :condition)
@@ -226,20 +197,6 @@
 
 ;;;;;;
 ;;; the real thing
-
-#+nil
-(define-dynamic-context* global-context
-  ((failure-descriptions (make-array 8 :adjustable t :fill-pointer 0))
-   (assertion-count 0)
-   (progress-char-count 0)
-   (print-test-run-progress-p *print-test-run-progress* :type boolean)
-   (debug-on-unexpected-error-p *debug-on-unexpected-error* :type boolean)
-   (debug-on-assertion-failure-p *debug-on-assertion-failure* :type boolean)
-   (toplevel-context nil)
-   (current-test nil)
-   (run-tests (make-hash-table) :documentation "test -> context mapping")
-   (run-fixtures (make-hash-table))
-   (test-lambdas (make-hash-table) :documentation "test -> compiled test lambda mapping for this test run")))
 
 (define-dynamic-context global-context
   ((failure-descriptions :initform (make-array 8 :adjustable t :fill-pointer 0) :accessor failure-descriptions-of :initarg :failure-descriptions)
@@ -676,7 +633,7 @@ This function is ideal for ASDF:TEST-OP's."
 For more details run it from the REPL and use the customized Slime inspector
 to inspect the results (ASDF eats up the return values). Some inspector
 features may only be available when using the Slime branch at
-darcs get --lazy http://dwim.hu/darcs/hu.dwim.slime
+darcs get --lazy http://dwim.hu/darcs/slime
 but the official Slime should also work fine.~%"
             test-function result)
     result))

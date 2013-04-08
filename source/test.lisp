@@ -6,14 +6,6 @@
 
 (in-package :stefil)
 
-#+nil(defclass-star:defclass* test (testable)
-  ((package nil)
-   (lambda-list nil)
-   (compile-before-run t :type boolean)
-   (declarations nil)
-   (documentation nil)
-   (body nil)))
-
 (defclass test (testable)
   ((package :initform nil :accessor package-of :initarg :package)
    (lambda-list :initform nil :accessor lambda-list-of :initarg :lambda-list)
