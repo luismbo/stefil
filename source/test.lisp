@@ -4,9 +4,9 @@
 ;;;
 ;;; See LICENCE for details.
 
-(in-package :hu.dwim.stefil)
+(in-package :stefil)
 
-#+nil(hu.dwim.defclass-star:defclass* test (testable)
+#+nil(defclass-star:defclass* test (testable)
   ((package nil)
    (lambda-list nil)
    (compile-before-run t :type boolean)
