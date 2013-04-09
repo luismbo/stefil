@@ -4,19 +4,16 @@
 ;;;
 ;;; See LICENCE for details.
 
-(load-system :asdf)
-
-(in-package :asdf)
-
 (defsystem :stefil
-  :class system
   :description "A Simple Test Framework In Lisp."
   :depends-on (:alexandria)
-  :components ((:module "source"
-                :components ((:file "asserts" :depends-on ("infrastructure"))
-                             (:file "package")
-                             (:file "duplicates" :depends-on ("package"))
-                             (:file "fixture" :depends-on ("test"))
-                             (:file "infrastructure" :depends-on ("duplicates"))
-                             (:file "test" :depends-on ("infrastructure"))
-                             (:file "suite" :depends-on ("infrastructure" "test"))))))
+  :components
+  ((:module "source"
+    :components
+    ((:file "asserts" :depends-on ("infrastructure"))
+     (:file "package")
+     (:file "duplicates" :depends-on ("package"))
+     (:file "fixture" :depends-on ("test"))
+     (:file "infrastructure" :depends-on ("duplicates"))
+     (:file "test" :depends-on ("infrastructure"))
+     (:file "suite" :depends-on ("infrastructure" "test"))))))
