@@ -4,13 +4,10 @@
 ;;;
 ;;; See LICENCE for details.
 
-(load-system :asdf)
-
-(in-package :asdf)
-
 (defsystem :stefil-test
-    :licence "BSD / Public domain"
-    :depends-on (:stefil)
-    :components ((:file "package")
-                 (:file "basic" :depends-on ("package"))
-                 (:file "fixtures" :depends-on ("package" "basic"))))
+  :licence "BSD / Public domain"
+  :depends-on (:stefil)
+  :serial t
+  :components ((:file "package")
+	       (:file "basic")
+	       (:file "fixtures")))
