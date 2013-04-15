@@ -6,7 +6,8 @@
 
 (in-package :stefil)
 
-;;; THE CONTENT OF THIS FILE IS COPIED OVER FROM SOME OTHER LIBRARIES TO DECREASE DEPENDENCIES
+;;; THE CONTENT OF THIS FILE IS COPIED OVER FROM SOME OTHER LIBRARIES TO
+;;; DECREASE DEPENDENCIES
 
 (defmacro defprint-object (&whole whole (self class-name &key (identity t) (type t) with-package (muffle-errors t))
                            &body body)
@@ -152,15 +153,6 @@
           ,special-var-name)
         (defun (setf ,extractor-name) (value)
           (setf ,special-var-name value))))))
-
-#+nil
-(defmacro define-dynamic-context* (name direct-slots &rest args
-                                   &key (defclass-macro-name 'defclass*)
-                                   &allow-other-keys)
-  (remove-from-plistf args :defclass-macro-name)
-  `(define-dynamic-context ,name ,direct-slots
-     :defclass-macro-name ,defclass-macro-name
-     ,@args))
 
 ;; from hu.dwim.common
 (defun import-all-owned-symbols (source-package target-package &key (overwrite nil))
