@@ -99,9 +99,13 @@ After that, you'll see a nice
 Support
 -------
 
-contact me at joaotavora at gmail.com
+Reach us via the [stefil-devel][stefil-devel] mailing list or the
+[#lisp][sharp-lisp] IRC channel.
+
 
 [old-intro]: http://common-lisp.net/project/stefil/index-old.shtml
 [new-home]: http://dwim.hu/project/hu.dwim.stefil
 [quicklisp]: quicklisp.org
 [asdf]: http://common-lisp.net/project/asdf/
+[stefil-devel]: http://dir.gmane.org/gmane.lisp.stefil.devel
+[sharp-lisp]: irc://irc.freenode.net/#lisp
