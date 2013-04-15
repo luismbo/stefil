@@ -84,7 +84,7 @@
 (defun run-test-body (test function arguments toplevel-p timeout)
   (declare (type test test))
   (when timeout
-    (error "TODO: timeouts are not implemented yet in hu.dwim.stefil"))
+    (error "TODO: timeouts are not implemented yet in Stefil."))
   (let* ((result-values '()))
     (flet ((body ()
              (with-new-context (:test test :test-arguments arguments)
