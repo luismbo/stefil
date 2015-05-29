@@ -6,7 +6,7 @@
 
 (defsystem :stefil
   :description "A Simple Test Framework In Lisp."
-  :depends-on (:alexandria)
+  :depends-on (:alexandria :iterate)
   :components
   ((:module "source"
     :components
